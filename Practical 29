@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Integer> marks = new ArrayList<>();
+
+        marks.add(85);
+        marks.add(72);
+        marks.add(91);
+        marks.add(68);
+        marks.add(79);
+
+        for (int mark : marks) {
+            System.out.println(mark);
+        }
+
+        System.out.println(Collections.max(marks));
+        System.out.println(Collections.min(marks));
+    }
+}

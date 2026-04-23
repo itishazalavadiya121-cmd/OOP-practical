@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(args[0]));
+
+            int charCount = 0;
+            int wordCount = 0;
+            int lineCount = 0;
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                lineCount++;
+
+                charCount += line.length();
+
+                String[] words = line.trim().split("\\s+");
+                if (!line.trim().isEmpty()) {
+                    wordCount += words.length;
+                }
+            }
+
+            br.close();
+
+            System.out.println(charCount);
+            System.out.println(wordCount);
+            System.out.println(lineCount);
+
+        } catch (IOException e) {
+            System.out.println("File error");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Please provide file name");
+        }
+    }
+}

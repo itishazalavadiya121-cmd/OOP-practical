@@ -1,0 +1,51 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+
+        BufferedReader br = null;
+
+        try {
+            br = new BufferedReader(new FileReader("data.txt"));
+
+            int lines = 0;
+            int words = 0;
+            int characters = 0;
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                lines++;
+
+                String trimmed = line.trim();
+
+                if (!trimmed.isEmpty()) {
+                    String[] w = trimmed.split("\\s+");
+                    words += w.length;
+                }
+
+                characters += line.replace(" ", "").length();
+            }
+
+            System.out.println(lines);
+            System.out.println(words);
+            System.out.println(characters);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Input/output error");
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException e) {
+                System.out.println("Error closing file");
+            }
+        }
+    }
+}

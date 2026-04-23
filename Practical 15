@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+class Employee {
+    String name;
+    String department;
+
+    void displayDetails() {
+        System.out.println(name);
+        System.out.println(department);
+    }
+}
+
+class Manager extends Employee {
+    int teamSize;
+    String projectName;
+
+    @Override
+    void displayDetails() {
+        System.out.println(name);
+        System.out.println(department);
+        System.out.println(teamSize);
+        System.out.println(projectName);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Employee e = new Employee();
+        e.name = sc.nextLine();
+        e.department = sc.nextLine();
+
+        Manager m = new Manager();
+        m.name = sc.nextLine();
+        m.department = sc.nextLine();
+        m.teamSize = sc.nextInt();
+        sc.nextLine();
+        m.projectName = sc.nextLine();
+
+        e.displayDetails();
+        m.displayDetails();
+    }
+}

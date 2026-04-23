@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+class BankAccount {
+    String accountNumber;
+    String accountHolderName;
+    double balance;
+
+    void openAccount(String accountNumber, String accountHolderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    double checkBalance() {
+        return balance;
+    }
+}
+
+class SavingAccount extends BankAccount {
+    double interestRate;
+
+    double calculateInterest() {
+        return (balance * interestRate) / 100;
+    }
+}
+
+class FixedDepositAccount extends BankAccount {
+    double interestRate;
+    int years;
+
+    double maturityAmount() {
+        return balance + (balance * interestRate * years) / 100;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String accNo1 = sc.nextLine();
+        String name1 = sc.nextLine();
+        double bal1 = sc.nextDouble();
+        double dep1 = sc.nextDouble();
+        double wd1 = sc.nextDouble();
+        double rate1 = sc.nextDouble();
+
+        sc.nextLine();
+
+        String accNo2 = sc.nextLine();
+        String name2 = sc.nextLine();
+        double bal2 = sc.nextDouble();
+        double rate2 = sc.nextDouble();
+        int years = sc.nextInt();
+
+        SavingAccount s = new SavingAccount();
+        s.openAccount(accNo1, name1, bal1);
+        s.deposit(dep1);
+        s.withdraw(wd1);
+        s.interestRate = rate1;
+
+        System.out.println(s.checkBalance());
+        System.out.println(s.calculateInterest());
+
+        FixedDepositAccount f = new FixedDepositAccount();
+        f.openAccount(accNo2, name2, bal2);
+        f.interestRate = rate2;
+        f.years = years;
+
+        System.out.println(f.maturityAmount());
+    }
+}

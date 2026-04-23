@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+class BankAccount {
+    String account_holder_name;
+    double balance;
+    static double interest_rate;
+
+    double calculateInterest() {
+        return (balance * interest_rate) / 100;
+    }
+
+    void displayInterest() {
+        System.out.println(account_holder_name);
+        System.out.println(calculateInterest());
+    }
+
+    static void updateInterestRate(double rate) {
+        interest_rate = rate;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        BankAccount.updateInterestRate(sc.nextDouble());
+        sc.nextLine();
+
+        BankAccount b1 = new BankAccount();
+        b1.account_holder_name = sc.nextLine();
+        b1.balance = sc.nextDouble();
+
+        b1.displayInterest();
+    }
+}
